@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -13,23 +13,26 @@
         android:rotation="0"
         android:rotationX="0"
         android:rotationY="0"
-        android:text="Do you want encrypt or decrypt?"
+        android:text="@string/do_you_want_encrypt_or_decrypt"
+        android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
+        app:layout_constraintVertical_bias="0.085" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="160dp"
         android:layout_height="139dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="108dp"
         android:layout_marginEnd="32dp"
-        android:text="Decrypt"
+        android:text="@string/decrypt"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,11 +47,10 @@
         android:layout_height="139dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="108dp"
-        android:text="Encrypt"
+        android:onClick="goToEncrypt"
+        android:text="@string/encrypt"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0"

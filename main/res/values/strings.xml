@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Encryption App by Alek</string>
+    <string name="do_you_want_encrypt_or_decrypt">Do you want encrypt or decrypt?</string>
+    <string name="decrypt">Decrypt</string>
+    <string name="encrypt">Encrypt</string>
+    <string name="encrypt_message">Enter message to encrypt</string>
+    <string name="encrypted_message">Your encrypted message</string>
 </resources>
