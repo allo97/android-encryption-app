@@ -46,7 +46,7 @@ public class ExampleUnitTest {
     public void givenStringAndPassword_whenEncrypt_thenSuccess() throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
 
         String input = "baeldung";
-        SecretKey key = AES.getKeyFromPassword("alekPassword1.", "randomSalt");
+        SecretKey key = AES.generateKeyFromPassword("alekPassword1.", "randomSalt");
         IvParameterSpec ivParameterSpec = AES.generateIv();
         String algorithm = "AES/CBC/PKCS5Padding";
         String cipherText = AES.encrypt(algorithm, input, key, ivParameterSpec);

@@ -32,6 +32,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="108dp"
         android:layout_marginEnd="32dp"
+        android:onClick="goToDecrypt"
         android:text="@string/decrypt"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

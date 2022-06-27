@@ -32,8 +32,7 @@ public class AES {
         return key;
     }
 
-
-    public static SecretKey getKeyFromPassword(String password, String salt)
+    public static SecretKey generateKeyFromPassword(String password, String salt)
             throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
@@ -43,10 +42,33 @@ public class AES {
         return secret;
     }
 
+    public static String convertSecretKeyToString(SecretKey secretKey) throws NoSuchAlgorithmException {
+        byte[] rawData = secretKey.getEncoded();
+        String encodedKey = Base64.getEncoder().encodeToString(rawData);
+        return encodedKey;
+    }
+
+    public static SecretKey convertStringToSecretKey(String encodedKey) {
+        byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
+        SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
+        return originalKey;
+    }
+
     public static IvParameterSpec generateIv() {
         byte[] iv = new byte[16];
         new SecureRandom().nextBytes(iv);
         return new IvParameterSpec(iv);
+    }
+
+    public static String convertInitVectorToString(IvParameterSpec initVector) throws NoSuchAlgorithmException {
+        byte[] rawData = initVector.getIV();
+        String encodedInitVector = Base64.getEncoder().encodeToString(rawData);
+        return encodedInitVector;
+    }
+
+    public static IvParameterSpec convertStringToInitVector(String encodedInitVector) {
+        byte[] decodedInitVector = Base64.getDecoder().decode(encodedInitVector);
+        return new IvParameterSpec(decodedInitVector);
     }
 
     public static String encrypt(String algorithm, String input, SecretKey key,

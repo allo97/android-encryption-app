@@ -4,5 +4,11 @@
     <string name="decrypt">Decrypt</string>
     <string name="encrypt">Encrypt</string>
     <string name="encrypt_message">Enter message to encrypt</string>
-    <string name="encrypted_message">Your encrypted message</string>
+    <string name="encrypted_message">Your encrypted message:</string>
+    <string name="decrypted_message">Your decrypted message:</string>
+    <string name="decrypt_message">Enter message to decrypt</string>
+    <string name="key_field">Your secret key:</string>
+    <string name="enter_secret_key">Enter secret key</string>
+    <string name="init_vector_text">Your initialization vector:</string>
+    <string name="enter_init_vector">Enter initialization vector</string>
 </resources>

@@ -18,13 +18,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToEncrypt(View view) {
-        System.out.println(view);
-        // Do something in response to button click
-        Log.d("MyTagGoesHere", "This is my log message at the debug level here f");
-
-        System.out.println("Zwykły print line w javie");
-
         Intent intent = new Intent(this, Encrypt.class);
+        startActivity(intent);
+    }
+
+    public void goToDecrypt(View view) {
+        Intent intent = new Intent(this, Decrypt.class);
         startActivity(intent);
     }
 
