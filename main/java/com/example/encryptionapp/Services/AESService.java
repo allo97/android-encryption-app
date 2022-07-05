@@ -1,8 +1,4 @@
-package com.example.encryptionapp.AESencryption;
-
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
+package com.example.encryptionapp.Services;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -23,7 +19,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class AES {
+public class AESService {
 
     public static SecretKey generateKey(int n) throws NoSuchAlgorithmException {
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");

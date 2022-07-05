@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.example.encryptionapp.AESencryption.AES;
+import com.example.encryptionapp.Services.AESService;
 import com.example.encryptionapp.R;
 
 import java.security.InvalidAlgorithmParameterException;
@@ -42,11 +40,11 @@ public class Decrypt extends AppCompatActivity {
         EditText editTextInitVector = (EditText) findViewById(R.id.editTextTextPersonName4);
         String stringInitVector = editTextInitVector.getText().toString();
 
-        SecretKey secretKey = AES.convertStringToSecretKey(stringKey);
-        IvParameterSpec ivParameterSpec = AES.convertStringToInitVector(stringInitVector);
+        SecretKey secretKey = AESService.convertStringToSecretKey(stringKey);
+        IvParameterSpec ivParameterSpec = AESService.convertStringToInitVector(stringInitVector);
         String algorithm = "AES/CBC/PKCS5Padding";
 
-        String decryptedMessage = AES.decrypt(algorithm, encryptedText, secretKey, ivParameterSpec);
+        String decryptedMessage = AESService.decrypt(algorithm, encryptedText, secretKey, ivParameterSpec);
 
         Intent intent = new Intent(this, DecryptedMessage.class);
         intent.putExtra(DECRYPTED_MESSAGE, decryptedMessage);

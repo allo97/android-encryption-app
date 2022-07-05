@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import com.example.encryptionapp.AESencryption.AES;
+import com.example.encryptionapp.Services.AESService;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -34,11 +34,11 @@ public class ExampleUnitTest {
             BadPaddingException, InvalidAlgorithmParameterException, NoSuchPaddingException {
 
         String input = "baeldung";
-        SecretKey key = AES.generateKey(256);
-        IvParameterSpec ivParameterSpec = AES.generateIv();
+        SecretKey key = AESService.generateKey(256);
+        IvParameterSpec ivParameterSpec = AESService.generateIv();
         String algorithm = "AES/CBC/PKCS5Padding";
-        String cipherText = AES.encrypt(algorithm, input, key, ivParameterSpec);
-        String plainText = AES.decrypt(algorithm, cipherText, key, ivParameterSpec);
+        String cipherText = AESService.encrypt(algorithm, input, key, ivParameterSpec);
+        String plainText = AESService.decrypt(algorithm, cipherText, key, ivParameterSpec);
         assertEquals(input, plainText);
     }
 
@@ -46,11 +46,11 @@ public class ExampleUnitTest {
     public void givenStringAndPassword_whenEncrypt_thenSuccess() throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
 
         String input = "baeldung";
-        SecretKey key = AES.generateKeyFromPassword("alekPassword1.", "randomSalt");
-        IvParameterSpec ivParameterSpec = AES.generateIv();
+        SecretKey key = AESService.generateKeyFromPassword("alekPassword1.", "randomSalt");
+        IvParameterSpec ivParameterSpec = AESService.generateIv();
         String algorithm = "AES/CBC/PKCS5Padding";
-        String cipherText = AES.encrypt(algorithm, input, key, ivParameterSpec);
-        String plainText = AES.decrypt(algorithm, cipherText, key, ivParameterSpec);
+        String cipherText = AESService.encrypt(algorithm, input, key, ivParameterSpec);
+        String plainText = AESService.decrypt(algorithm, cipherText, key, ivParameterSpec);
         assertEquals(input, plainText);
     }
 }

@@ -11,4 +11,7 @@
     <string name="enter_secret_key">Enter secret key</string>
     <string name="init_vector_text">Your initialization vector:</string>
     <string name="enter_init_vector">Enter initialization vector</string>
+    <string name="AES_config">Cipher config:</string>
+    <string name="generate_key">Generate secret</string>
+    <string name="input_key">Enter secret</string>
 </resources>
