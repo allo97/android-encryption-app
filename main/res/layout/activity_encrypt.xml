@@ -4,43 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Encrypt"
+    tools:context=".activities.AESEncrypt"
     tools:layout_editor_absoluteX="-10dp"
     tools:layout_editor_absoluteY="0dp">
 
-    <EditText
-        android:id="@+id/message_to_encrypt"
-        android:layout_width="258dp"
-        android:layout_height="72dp"
-        android:ems="10"
-        android:hint="@string/encrypt_message"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.905" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="199dp"
-        android:layout_height="101dp"
-        android:layout_marginBottom="48dp"
-        android:onClick="encrypt"
-        android:text="@string/encrypt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/aes_encrypt_config_label"
         android:layout_width="300dp"
         android:layout_height="54dp"
-        android:layout_marginTop="16dp"
-        android:text="AES cipher config"
+        android:layout_marginTop="32dp"
+        android:text="AES encrypt config"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -48,20 +22,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/own_secret_input"
-        android:layout_width="171dp"
+    <TextView
+        android:id="@+id/mode_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter secret"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        android:visibility="visible"
+        android:layout_marginTop="28dp"
+        android:text="Choose AES mode:"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup_secret_decision_radio" />
+        app:layout_constraintTop_toBottomOf="@+id/aes_encrypt_config_label" />
 
     <Spinner
-        android:id="@+id/aes_mode_list"
+        android:id="@+id/aes_mode_spinner"
         android:layout_width="110dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -71,53 +45,54 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toEndOf="@+id/mode_text"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/mode_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Choose AES mode:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/aes_encrypt_config_label" />
 
     <RadioGroup
         android:id="@+id/radioGroup_secret_decision_radio"
-        android:layout_width="280dp"
+        android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginTop="16dp"
+        android:checkedButton="@+id/radioButton_generate_secret"
         android:orientation="horizontal"
-        android:checkedButton="@+id/radioButton_enter_secret"
-        app:layout_constraintEnd_toEndOf="@+id/aes_mode_list"
-        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintEnd_toEndOf="@+id/aes_mode_spinner"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/mode_text"
         app:layout_constraintTop_toBottomOf="@+id/mode_text">
-
-        <RadioButton
-            android:id="@+id/radioButton_enter_secret"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="18dp"
-            android:text="Enter secret"
-            android:onClick="onRadioButtonSecretDecisionClicked" />/>
 
         <RadioButton
             android:id="@+id/radioButton_generate_secret"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:text="Generate secret"
-            android:onClick="onRadioButtonSecretDecisionClicked" />/>
+            android:layout_marginEnd="12dp"
+            android:onClick="onRadioButtonSecretDecisionClicked"
+            android:text="Generate secret" />
+
+        <RadioButton
+            android:id="@+id/radioButton_enter_secret"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonSecretDecisionClicked"
+            android:text="Enter secret" />
     </RadioGroup>
+
+    <EditText
+        android:id="@+id/enter_secret_input"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter secret"
+        android:inputType="textPersonName"
+        android:textAlignment="textStart"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_secret_decision_radio" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/generate_key_layout"
         android:layout_width="wrap_content"
         android:layout_height="168dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/radioGroup_secret_decision_radio"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/radioGroup_secret_decision_radio"
@@ -164,19 +139,19 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Choose key size:"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <RadioGroup
-                android:id="@+id/radioGroup2"
+                android:id="@+id/radioGroupKeySize"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:checkedButton="@+id/radioButton256size"
+                android:checkedButton="@+id/radioButton128size"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -232,7 +207,7 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Enter password and salt:"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -245,7 +220,7 @@
                 android:layout_margin="0dp"
                 android:ems="10"
                 android:hint="Password"
-                android:inputType="textVisiblePassword"
+                android:inputType="textPassword"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -269,6 +244,31 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/message_to_encrypt"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:gravity="bottom"
+        android:hint="Enter message to encrypt"
+        android:inputType="textMultiLine"
+        android:maxHeight="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="199dp"
+        android:layout_height="101dp"
+        android:layout_marginBottom="60dp"
+        android:onClick="encrypt"
+        android:text="@string/encrypt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

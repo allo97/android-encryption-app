@@ -26,7 +26,7 @@
                 android:value=".activities.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.Decrypt"
+            android:name=".activities.AESDecrypt"
             android:exported="false"
             android:parentActivityName=".activities.MainActivity">
             <meta-data
@@ -34,7 +34,7 @@
                 android:value=".activities.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.Encrypt"
+            android:name=".activities.AESEncrypt"
             android:exported="false"
             android:parentActivityName=".activities.MainActivity">
             <meta-data

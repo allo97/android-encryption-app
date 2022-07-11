@@ -5,9 +5,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import com.example.encryptionapp.Services.AESService;
+import com.example.encryptionapp.Services.RSAService;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -52,5 +54,17 @@ public class ExampleUnitTest {
         String cipherText = AESService.encrypt(algorithm, input, key, ivParameterSpec);
         String plainText = AESService.decrypt(algorithm, cipherText, key, ivParameterSpec);
         assertEquals(input, plainText);
+    }
+
+    @Test
+    public void givenInputAndKeys_whenEncrypt_thenSuccess() throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+        String input = "alek jest łądny";
+        KeyPair keyPair = RSAService.generateRSAKeyPair();
+
+        String encryptedInput = RSAService.encrypt(input, keyPair.getPublic());
+
+        String decryptedInput = RSAService.decrypt(encryptedInput, keyPair.getPrivate());
+
+        assertEquals(input, decryptedInput);
     }
 }

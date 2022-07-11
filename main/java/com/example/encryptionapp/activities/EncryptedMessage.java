@@ -1,11 +1,12 @@
 package com.example.encryptionapp.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.encryptionapp.R;
 
@@ -18,18 +19,26 @@ public class EncryptedMessage extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String encryptedMessage = intent.getStringExtra(Encrypt.ENCRYPTED_MESSAGE);
-        String secretKey = intent.getStringExtra(Encrypt.SECRET_KEY);
-        String initVector = intent.getStringExtra(Encrypt.INIT_VECTOR);
+        String encryptedMessage = intent.getStringExtra(AESEncrypt.ENCRYPTED_MESSAGE);
+        String secretKey = intent.getStringExtra(AESEncrypt.SECRET_KEY);
+        String initVector = intent.getStringExtra(AESEncrypt.INIT_VECTOR);
 
         // Capture the layout's TextView and set the string as its text
-        EditText encryptedMessageEditText = (EditText) findViewById(R.id.editTextTextPersonName);
-        encryptedMessageEditText.setText(encryptedMessage);
+        TextView encryptedMessageTextView = findViewById(R.id.encrypted_message_text);
+        encryptedMessageTextView.setText(encryptedMessage);
 
-        EditText secretKeyEditText = (EditText) findViewById(R.id.editTextTextPersonName5);
-        secretKeyEditText.setText(secretKey);
+        TextView secretKeyTextView = findViewById(R.id.secret_key_text);
+        secretKeyTextView.setText(secretKey);
 
-        EditText initVectorEditText = (EditText) findViewById(R.id.editTextTextPersonName6);
-        initVectorEditText.setText(initVector);
+        ConstraintLayout initVectorConstraintLayout = findViewById(R.id.init_vector_constraint_layout);
+
+        if (initVector == null) {
+            initVectorConstraintLayout.setVisibility(View.GONE);
+        } else {
+            TextView initVectorTextView = findViewById(R.id.init_vector_text);
+            initVectorTextView.setText(initVector);
+        }
+
+
     }
 }

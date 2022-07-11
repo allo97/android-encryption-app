@@ -17,7 +17,7 @@ public class DecryptedMessage extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String decryptedMessage = intent.getStringExtra(Decrypt.DECRYPTED_MESSAGE);
+        String decryptedMessage = intent.getStringExtra(AESDecrypt.DECRYPTED_MESSAGE);
 
         // Capture the layout's TextView and set the string as its text
         EditText encryptedMessageEditText = (EditText) findViewById(R.id.editTextTextPersonName);
