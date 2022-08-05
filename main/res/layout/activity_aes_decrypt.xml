@@ -34,7 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Use init vector"
-            android:onClick="onSwitchButtonClick"
+            android:focusable="false"
+            android:clickable="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mode_text" />
 

@@ -5,12 +5,15 @@ import static com.example.encryptionapp.services.DataService.AES_MODES;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckedTextView;
 
 import com.example.encryptionapp.R;
 import com.example.encryptionapp.services.AESService;
@@ -34,9 +37,37 @@ public class AESDecrypt extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aes_decrypt);
 
-        Spinner dropdown = findViewById(R.id.aes_mode_spinner);
+        Spinner dropdownSpinner = findViewById(R.id.aes_mode_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, AES_MODES);
-        dropdown.setAdapter(adapter);
+        dropdownSpinner.setAdapter(adapter);
+
+        dropdownSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                AppCompatCheckedTextView appCompatCheckedTextView = (AppCompatCheckedTextView) selectedItemView;
+
+                if (appCompatCheckedTextView == null)
+                    return;
+
+                String mode = appCompatCheckedTextView.getText().toString();
+
+                SwitchMaterial switchMaterial = findViewById(R.id.use_init_vector_switch);
+                EditText initVectorInput = findViewById(R.id.init_vector_input);
+
+                if (mode.equals("ECB")) {
+                    switchMaterial.setChecked(false);
+                    initVectorInput.setVisibility(View.GONE);
+                } else {
+                    switchMaterial.setChecked(true);
+                    initVectorInput.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     public void decrypt(View view) throws NoSuchAlgorithmException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
@@ -66,16 +97,5 @@ public class AESDecrypt extends AppCompatActivity {
         Intent intent = new Intent(this, AESDecryptedMessage.class);
         intent.putExtra(DECRYPTED_MESSAGE, decryptedText);
         startActivity(intent);
-    }
-
-    public void onSwitchButtonClick(View view) {
-        boolean checked = ((SwitchMaterial) view).isChecked();
-        EditText initVectorInput = findViewById(R.id.init_vector_input);
-
-        if (checked) {
-            initVectorInput.setVisibility(View.VISIBLE);
-        } else {
-            initVectorInput.setVisibility(View.GONE);
-        }
     }
 }
