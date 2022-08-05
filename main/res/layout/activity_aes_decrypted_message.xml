@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.DecryptedMessage">
+    tools:context=".activities.AESDecryptedMessage">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/decrypted_message_label"
         android:layout_width="329dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -20,17 +20,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/decrypted_message_text"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:maxHeight="400dp"
         android:minHeight="40dp"
         android:textIsSelectable="true"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/decrypted_message_label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.encryptionapp.Services;
+package com.example.encryptionapp.services;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -38,7 +38,7 @@ public class AESService {
         return secret;
     }
 
-    public static String convertSecretKeyToString(SecretKey secretKey) throws NoSuchAlgorithmException {
+    public static String convertSecretKeyToString(SecretKey secretKey) {
         byte[] rawData = secretKey.getEncoded();
         String encodedKey = Base64.getEncoder().encodeToString(rawData);
         return encodedKey;
@@ -56,7 +56,7 @@ public class AESService {
         return new IvParameterSpec(iv);
     }
 
-    public static String convertInitVectorToString(IvParameterSpec initVector) throws NoSuchAlgorithmException {
+    public static String convertInitVectorToString(IvParameterSpec initVector) {
         byte[] rawData = initVector.getIV();
         String encodedInitVector = Base64.getEncoder().encodeToString(rawData);
         return encodedInitVector;

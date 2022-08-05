@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.EncryptedMessage">
+    tools:context=".activities.AESEncryptedMessage">
 
     <TextView
         android:id="@+id/encrypted_message_label"

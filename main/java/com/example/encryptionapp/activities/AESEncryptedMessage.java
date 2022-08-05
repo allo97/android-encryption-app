@@ -10,20 +10,18 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.encryptionapp.R;
 
-public class EncryptedMessage extends AppCompatActivity {
+public class AESEncryptedMessage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_encrypted_message);
+        setContentView(R.layout.activity_aes_encrypted_message);
 
-        // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         String encryptedMessage = intent.getStringExtra(AESEncrypt.ENCRYPTED_MESSAGE);
         String secretKey = intent.getStringExtra(AESEncrypt.SECRET_KEY);
         String initVector = intent.getStringExtra(AESEncrypt.INIT_VECTOR);
 
-        // Capture the layout's TextView and set the string as its text
         TextView encryptedMessageTextView = findViewById(R.id.encrypted_message_text);
         encryptedMessageTextView.setText(encryptedMessage);
 

@@ -1,7 +1,7 @@
 package com.example.encryptionapp.activities;
 
-import static com.example.encryptionapp.Services.DataService.AES_ALGORITHMS;
-import static com.example.encryptionapp.Services.DataService.AES_MODES;
+import static com.example.encryptionapp.services.DataService.AES_ALGORITHMS;
+import static com.example.encryptionapp.services.DataService.AES_MODES;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.encryptionapp.R;
-import com.example.encryptionapp.Services.AESService;
+import com.example.encryptionapp.services.AESService;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.security.InvalidAlgorithmParameterException;
@@ -32,7 +32,7 @@ public class AESDecrypt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_decrypt);
+        setContentView(R.layout.activity_aes_decrypt);
 
         Spinner dropdown = findViewById(R.id.aes_mode_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, AES_MODES);
@@ -63,7 +63,7 @@ public class AESDecrypt extends AppCompatActivity {
             decryptedText = AESService.decrypt(algorithm, encryptedText, secretKey, ivParameterSpec);
         }
 
-        Intent intent = new Intent(this, DecryptedMessage.class);
+        Intent intent = new Intent(this, AESDecryptedMessage.class);
         intent.putExtra(DECRYPTED_MESSAGE, decryptedText);
         startActivity(intent);
     }

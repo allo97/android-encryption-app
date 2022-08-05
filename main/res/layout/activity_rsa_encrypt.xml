@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.RSAEncrypt"
+    tools:layout_editor_absoluteX="37dp"
+    tools:layout_editor_absoluteY="-20dp">
+
+    <Button
+        android:id="@+id/button_encrypt"
+        android:layout_width="199dp"
+        android:layout_height="101dp"
+        android:layout_marginBottom="60dp"
+        android:onClick="encrypt"
+        android:text="Encrypt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/public_private_keys_layout"
+        android:layout_width="263dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_generate_keys">
+
+        <TextView
+            android:id="@+id/public_key_text"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:textIsSelectable="true"
+            android:textSize="18dp"
+            android:background="@drawable/edit_text_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/public_key_label"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/public_key_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Public key:"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/private_key_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Private key:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/public_key_text" />
+
+        <TextView
+            android:id="@+id/private_key_text"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:textIsSelectable="true"
+            android:textSize="18dp"
+            android:background="@drawable/edit_text_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/private_key_label"
+            app:layout_constraintTop_toBottomOf="@+id/public_key_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/message_to_encrypt_input"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:gravity="bottom"
+        android:hint="Enter message to encrypt"
+        android:inputType="textMultiLine"
+        android:maxHeight="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_encrypt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/public_key_input"
+        android:layout_width="258dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:gravity="bottom"
+        android:hint="Enter public key"
+        android:maxHeight="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/message_to_encrypt_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/rsa_encrypt_config_label"
+        android:layout_width="300dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="32dp"
+        android:text="RSA encrypt config"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_generate_keys"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:maxWidth="200dp"
+        android:text="Generate public and private key"
+        android:onClick="onGeneratePublicAndPrivateKeys"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rsa_encrypt_config_label" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

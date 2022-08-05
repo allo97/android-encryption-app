@@ -8,7 +8,7 @@ import android.widget.RadioButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.encryptionapp.R;
-import com.example.encryptionapp.Services.DataService;
+import com.example.encryptionapp.services.DataService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, AESEncrypt.class);
                 break;
             case RSA:
-                return;
+                intent = new Intent(this, RSAEncrypt.class);
+                break;
         }
         startActivity(intent);
     }
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, AESDecrypt.class);
                 break;
             case RSA:
-                return;
+                intent = new Intent(this, RSADecrypt.class);
+                break;
         }
         startActivity(intent);
     }

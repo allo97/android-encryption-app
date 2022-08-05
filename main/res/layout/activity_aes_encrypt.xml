@@ -265,7 +265,7 @@
         android:layout_height="101dp"
         android:layout_marginBottom="60dp"
         android:onClick="encrypt"
-        android:text="@string/encrypt"
+        android:text="Encrypt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

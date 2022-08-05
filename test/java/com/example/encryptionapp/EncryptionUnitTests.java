@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import com.example.encryptionapp.Services.AESService;
-import com.example.encryptionapp.Services.RSAService;
+import com.example.encryptionapp.services.AESService;
+import com.example.encryptionapp.services.RSAService;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -24,12 +24,7 @@ import javax.crypto.spec.IvParameterSpec;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
-
+public class EncryptionUnitTests {
     @Test
     public void givenStringAndKeyGenerator_whenEncrypt_thenSuccess()
             throws NoSuchAlgorithmException, IllegalBlockSizeException, InvalidKeyException,

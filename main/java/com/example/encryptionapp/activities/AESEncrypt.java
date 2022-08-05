@@ -1,7 +1,7 @@
 package com.example.encryptionapp.activities;
 
-import static com.example.encryptionapp.Services.DataService.AES_ALGORITHMS;
-import static com.example.encryptionapp.Services.DataService.AES_MODES;
+import static com.example.encryptionapp.services.DataService.AES_ALGORITHMS;
+import static com.example.encryptionapp.services.DataService.AES_MODES;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.encryptionapp.R;
-import com.example.encryptionapp.Services.AESService;
+import com.example.encryptionapp.services.AESService;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -37,7 +37,7 @@ public class AESEncrypt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_encrypt);
+        setContentView(R.layout.activity_aes_encrypt);
 
         Spinner dropdown = findViewById(R.id.aes_mode_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, AES_MODES);
@@ -99,7 +99,7 @@ public class AESEncrypt extends AppCompatActivity {
 
         String stringKey = AESService.convertSecretKeyToString(key);
 
-        Intent intent = new Intent(this, EncryptedMessage.class);
+        Intent intent = new Intent(this, AESEncryptedMessage.class);
         intent.putExtra(ENCRYPTED_MESSAGE, cipherText);
         intent.putExtra(SECRET_KEY, stringKey);
         intent.putExtra(INIT_VECTOR, initVector);

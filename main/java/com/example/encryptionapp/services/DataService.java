@@ -1,4 +1,4 @@
-package com.example.encryptionapp.Services;
+package com.example.encryptionapp.services;
 
 
 public class DataService {
