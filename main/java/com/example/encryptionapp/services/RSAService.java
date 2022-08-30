@@ -25,12 +25,7 @@ public class RSAService {
         return generator.generateKeyPair();
     }
 
-    public static String convertBytesToString(byte[] bytes) {
-        return Base64.getEncoder().encodeToString(bytes);
-    }
-
     public static PublicKey getPublicKey(String publicKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
-
         byte[] publicKeyBytes = Base64.getDecoder().decode(publicKey);
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicKeyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
@@ -42,6 +37,10 @@ public class RSAService {
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         return keyFactory.generatePrivate(keySpec);
+    }
+
+    public static String convertBytesToString(byte[] bytes) {
+        return Base64.getEncoder().encodeToString(bytes);
     }
 
     public static String encrypt(String input, PublicKey publicKey) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
